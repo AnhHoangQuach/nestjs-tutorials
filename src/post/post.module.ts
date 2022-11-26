@@ -4,6 +4,7 @@ import { PostController } from './controllers/post.controller';
 import { PostSchema } from './models/post.model';
 import { PostService } from './services/post.service';
 import { PostRepository } from './repositories/post.repository';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { PostRepository } from './repositories/post.repository';
         schema: PostSchema,
       },
     ]),
+    UserModule,
   ],
   controllers: [PostController],
   providers: [PostService, PostRepository],
