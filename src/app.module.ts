@@ -7,6 +7,7 @@ import { PostModule } from './post/post.module';
 import { UserModule } from './user/user.module';
 import { APP_FILTER } from '@nestjs/core';
 import { ExceptionLoggerFilter } from './utils/exceptionLogger.filter';
+import { MediaModule } from './media/media.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ExceptionLoggerFilter } from './utils/exceptionLogger.filter';
       useUnifiedTopology: true,
     }),
     UserModule,
+    MediaModule,
   ],
   controllers: [AppController],
   providers: [
