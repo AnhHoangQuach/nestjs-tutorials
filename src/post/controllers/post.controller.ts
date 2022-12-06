@@ -11,7 +11,11 @@ import {
   Req,
   Query,
 } from '@nestjs/common';
-import { CreatePostDto, UpdatePostDto } from '../dto/post.dto';
+import {
+  CreatePostDto,
+  UpdatePostDto,
+  PaginationPostDto,
+} from '../dto/post.dto';
 import { PostService } from '../services/post.service';
 import { ExceptionLoggerFilter } from '../../utils/exceptionLogger.filter';
 import { HttpExceptionFilter } from '../../utils/httpException.filter';
@@ -22,8 +26,8 @@ export class PostController {
   constructor(private readonly postService: PostService) {}
 
   @Get()
-  getAllPost() {
-    return this.postService.getAllPosts();
+  getAllPost(@Query() { page, limit, start }: PaginationPostDto) {
+    return this.postService.getAllPosts(page, limit, start);
   }
 
   @Get(':id')
@@ -53,6 +57,12 @@ export class PostController {
   @Get('user/all')
   async getPostUser(@Req() req: any) {
     await req.user.populate('posts').execPopulate();
+    await req.user
+      .populate({
+        path: 'posts',
+        // select: 'title',
+      })
+      .execPopulate();
     return req.user.posts;
   }
 
@@ -64,5 +74,10 @@ export class PostController {
   @Get('get/categories')
   async getByCategories(@Query('category_ids') category_ids) {
     return await this.postService.getByCategories(category_ids);
+  }
+
+  @Get('get/array')
+  async getByArray() {
+    return this.postService.getByArray();
   }
 }
