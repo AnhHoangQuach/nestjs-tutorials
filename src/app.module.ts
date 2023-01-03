@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { APP_FILTER } from '@nestjs/core';
 import { ExceptionLoggerFilter } from './utils/exceptionLogger.filter';
 import { MediaModule } from './media/media.module';
+import { SubscriberModule } from './subscriber/subscriber.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { MediaModule } from './media/media.module';
     }),
     UserModule,
     MediaModule,
+    SubscriberModule,
   ],
   controllers: [AppController],
   providers: [
