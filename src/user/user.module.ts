@@ -10,6 +10,8 @@ import { UserRepository } from './repositories/user.repository';
 import { JwtStrategy } from './jwt.strategy';
 import { UserController } from './controllers/user.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { BullModule } from '@nestjs/bull';
+import { EmailConsumer } from './consumers/email.consumer';
 
 // @Global()
 @Module({
@@ -34,6 +36,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         },
       }),
       inject: [ConfigService],
+    }),
+    BullModule.registerQueue({
+      name: 'send-mail',
     }),
   ],
   controllers: [AuthController, UserController],
