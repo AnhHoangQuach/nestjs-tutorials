@@ -31,6 +31,8 @@
     "@nestjs/platform-express": "^9.0.0",
     "@types/aws-sdk": "^2.7.0",
     "@types/bcrypt": "^5.0.0",
+    "amqp-connection-manager": "^4.1.12",
+    "amqplib": "^0.10.3",
     "aws-sdk": "^2.1261.0",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
