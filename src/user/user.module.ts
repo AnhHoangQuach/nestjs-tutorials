@@ -38,7 +38,7 @@ import { EmailConsumer } from './consumers/email.consumer';
       inject: [ConfigService],
     }),
     BullModule.registerQueue({
-      name: 'send1-mail',
+      name: 'send-mail',
     }),
   ],
   controllers: [AuthController, UserController],
